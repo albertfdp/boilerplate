@@ -11,8 +11,11 @@ describe('App', () => {
   it('renders with', () => {
     expect(
       <App />,
-      'to have rendered',
-      <div>foo</div>
+      'to render as',
+      <div className='container'>
+        <h1>An opinionated boilerplate</h1>
+        <p>...and offline ready!</p>
+      </div>
     )
   })
 })
