@@ -24,7 +24,7 @@ const renderIntoDocument = (reactElement) => {
   }
 
   return TestUtils.renderIntoDocument(
-    <StatelessWrapper>{ reactElement }</StatelessWrapper>
+    <StatelessWrapper>{reactElement}</StatelessWrapper>
   )
 }
 

@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`App renders 1`] = `
 <div
-  className="container">
+  className="container"
+>
   <h1>
     An opinionated boilerplate
   </h1>
