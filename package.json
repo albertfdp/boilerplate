@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
+    "styleguide": "styleguidist --config config/styleguide.config.js server",
     "build": "NODE_ENV=production webpack --progress",
     "format": "yarn run format:js && yarn run lint:css",
     "lint:css": "stylelint src/**/*.css",
@@ -39,6 +40,7 @@
     "react": "15.4.2",
     "react-addons-test-utils": "15.4.2",
     "react-dom": "15.4.2",
+    "react-styleguidist": "4.6.3",
     "react-svg-loader": "1.1.1",
     "react-test-renderer": "15.4.2",
     "style-loader": "0.16.0",
