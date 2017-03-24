@@ -1,1 +1,1 @@
-export offlinePlugin from './offlinePlugin'
+export offlinePlugin from './offlinePlugin';

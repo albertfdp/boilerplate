@@ -1,3 +1,1 @@
-module.exports = __PRODUCTION__
-  ? require('./offlinePlugin.prod')
-  : {}
+module.exports = __PRODUCTION__ ? require('./offlinePlugin.prod') : {};

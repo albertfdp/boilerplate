@@ -1,11 +1,11 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const postcssCssNext = require('postcss-cssnext')
-const postcssImport = require('postcss-import')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const postcssCssNext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
-const paths = require('./paths')
+const paths = require('./paths');
 
 module.exports = {
   devtool: 'source-map',
@@ -17,16 +17,10 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'standard-loader',
-        include: paths.source
-      },
       { test: /\.js$/, loader: 'babel-loader', include: paths.source },
       {
         test: /\.svg$/,
-        loaders: [ 'babel-loader', 'react-svg-loader' ],
+        loaders: ['babel-loader', 'react-svg-loader'],
         include: paths.assets
       },
       {
@@ -50,16 +44,19 @@ module.exports = {
       test: /\.css$/,
       options: {
         context: __dirname,
-        postcss: function (webpack) {
+        postcss: function(webpack) {
           return [
-            postcssImport({ path: [ paths.source, paths.nodeModules ] }),
+            postcssImport({ path: [paths.source, paths.nodeModules] }),
             postcssCssNext()
-          ]
+          ];
         }
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin({ filename: '[name].[chunkhash].css', allChunks: true }),
+    new ExtractTextPlugin({
+      filename: '[name].[chunkhash].css',
+      allChunks: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: { screw_ie8: true, warnings: false },
       mangle: { screw_ie8: true }
@@ -71,11 +68,11 @@ module.exports = {
     new OfflinePlugin({
       safeToUseOptionalCaches: true,
       caches: {
-        main: [ 'app.*.js', 'app.*.css', 'index.html' ],
-        optional: [ ':rest:' ]
+        main: ['app.*.js', 'app.*.css', 'index.html'],
+        optional: [':rest:']
       },
       ServiceWorker: { events: true },
       AppCache: { events: true }
     })
   ]
-}
+};

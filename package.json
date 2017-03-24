@@ -9,10 +9,10 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "NODE_ENV=production webpack --progress",
-    "lint": "standard",
+    "format": "prettier --single-quote --write {config,src,test}/**/*.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "travis": "yarn run lint && yarn run test"
+    "travis": "yarn run format && yarn run test"
   },
   "devDependencies": {
     "babel-core": "6.24.0",
@@ -34,13 +34,12 @@
     "postcss-cssnext": "2.10.0",
     "postcss-import": "9.1.0",
     "postcss-loader": "1.3.3",
+    "prettier": "0.22.0",
     "react": "15.4.2",
     "react-addons-test-utils": "15.4.2",
     "react-dom": "15.4.2",
     "react-svg-loader": "1.1.1",
     "react-test-renderer": "15.4.2",
-    "standard": "9.0.2",
-    "standard-loader": "6.0.1",
     "style-loader": "0.16.0",
     "unexpected": "10.26.3",
     "unexpected-react": "3.5.2",

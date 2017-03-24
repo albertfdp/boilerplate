@@ -1,14 +1,14 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const postcssCssNext = require('postcss-cssnext')
-const postcssImport = require('postcss-import')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const postcssCssNext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 
-const paths = require('./paths')
+const paths = require('./paths');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
 
-  entry: [ paths.app ],
+  entry: [paths.app],
 
   output: {
     filename: '[name].js',
@@ -19,22 +19,13 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'standard-loader',
-        include: paths.source
-      },
-      {
         test: /\.js$/,
         loader: 'babel-loader',
         include: paths.source
       },
       {
         test: /\.svg$/,
-        loaders: [
-          'babel-loader',
-          'react-svg-loader'
-        ],
+        loaders: ['babel-loader', 'react-svg-loader'],
         include: paths.assets
       },
       {
@@ -59,20 +50,20 @@ module.exports = {
 
   plugins: [
     new webpack.DefinePlugin({
-      '__DEV__': true,
-      '__PRODUCTION__': false
+      __DEV__: true,
+      __PRODUCTION__: false
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css$/,
       options: {
         context: __dirname,
-        postcss: function (webpack) {
+        postcss: function(webpack) {
           return [
             postcssImport({
-              path: [ paths.source, paths.nodeModules ]
+              path: [paths.source, paths.nodeModules]
             }),
             postcssCssNext()
-          ]
+          ];
         }
       }
     }),
@@ -83,4 +74,4 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};
