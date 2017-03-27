@@ -10,12 +10,14 @@
     "start": "webpack-dev-server",
     "styleguide": "styleguidist --config config/styleguide.config.js server",
     "build": "NODE_ENV=production webpack --progress",
-    "format": "yarn run format:js && yarn run lint:css",
+    "format": "yarn run format:js",
+    "lint": "yarn run lint:js && yarn run lint:css",
     "lint:css": "stylelint src/**/*.css",
+    "lint:js": "eslint {config,src,test}/**/*.js",
     "format:js": "prettier --single-quote --write {config,src,test}/**/*.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "travis": "yarn run format && yarn run test"
+    "travis": "yarn run format && yarn run lint && yarn run test"
   },
   "devDependencies": {
     "babel-core": "6.24.0",
@@ -27,6 +29,14 @@
     "babel-preset-env": "1.2.2",
     "babel-preset-react": "6.23.0",
     "css-loader": "0.27.3",
+    "eslint": "3.18.0",
+    "eslint-config-prettier": "1.5.0",
+    "eslint-config-standard": "7.1.0",
+    "eslint-config-standard-react": "4.3.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-react": "6.10.3",
+    "eslint-plugin-standard": "2.1.1",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.10.1",
     "html-webpack-plugin": "2.28.0",
@@ -51,15 +61,6 @@
     "url-loader": "0.5.8",
     "webpack": "2.3.1",
     "webpack-dev-server": "2.4.2"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "global": [
-      "__DEV__",
-      "__PRODUCTION__",
-      "describe",
-      "it"
-    ]
   },
   "jest": {
     "moduleNameMapper": {

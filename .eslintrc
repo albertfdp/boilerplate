@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "standard-react",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "standard",
+    "promise",
+    "jsx-a11y"
+  ],
+  "globals": {
+    "__DEV__": false,
+    "__PRODUCTION__": false,
+    "describe": false,
+    "it": false,
+    "beforeEach": false
+  }
+}
