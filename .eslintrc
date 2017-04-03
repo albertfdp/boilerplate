@@ -1,15 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "standard",
-    "standard-react",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "standard",
-    "promise",
-    "jsx-a11y"
+    "pretty-standard"
   ],
   "globals": {
     "__DEV__": false,
