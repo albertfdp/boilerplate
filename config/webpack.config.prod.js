@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const postcssCssNext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
@@ -39,18 +37,6 @@ module.exports = {
       __DEV__: false,
       __PRODUCTION__: true,
       'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.LoaderOptionsPlugin({
-      test: /\.css$/,
-      options: {
-        context: __dirname,
-        postcss: function(webpack) {
-          return [
-            postcssImport({ path: [paths.source, paths.nodeModules] }),
-            postcssCssNext()
-          ];
-        }
-      }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin({

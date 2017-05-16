@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const postcssCssNext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
 
 const paths = require('./paths');
 
@@ -52,20 +50,6 @@ module.exports = {
     new webpack.DefinePlugin({
       __DEV__: true,
       __PRODUCTION__: false
-    }),
-    new webpack.LoaderOptionsPlugin({
-      test: /\.css$/,
-      options: {
-        context: __dirname,
-        postcss: function(webpack) {
-          return [
-            postcssImport({
-              path: [paths.source, paths.nodeModules]
-            }),
-            postcssCssNext()
-          ];
-        }
-      }
     }),
     new HtmlWebpackPlugin({
       title: 'An opinionated boilerplate',
