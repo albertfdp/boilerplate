@@ -1,7 +1,7 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const paths = require('./paths');
+const paths = require('./paths')
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -58,4 +58,4 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
-};
+}

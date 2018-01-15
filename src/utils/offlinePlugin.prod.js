@@ -1,12 +1,12 @@
-import OfflinePlugin from 'offline-plugin/runtime';
+import OfflinePlugin from 'offline-plugin/runtime'
 
 OfflinePlugin.install({
   onUpdateReady: function() {
-    OfflinePlugin.applyUpdate();
+    OfflinePlugin.applyUpdate()
   },
   onUpdated: function() {
-    window.location.reload();
+    window.location.reload()
   }
-});
+})
 
-export default OfflinePlugin;
+export default OfflinePlugin

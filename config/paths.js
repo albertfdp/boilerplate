@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   app: path.resolve(__dirname, '..', 'src', 'index.js'),
@@ -9,4 +9,4 @@ module.exports = {
   source: path.join(__dirname, '..', 'src'),
   styles: path.join(__dirname, '..', 'src', 'styles'),
   template: path.resolve(__dirname, './index.html.ejs')
-};
+}

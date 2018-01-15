@@ -1,4 +1,4 @@
-const webpackConfig = require('./webpack.config.dev');
+const webpackConfig = require('./webpack.config.dev')
 
 module.exports = {
   title: 'Boilerplate Style Guide',
@@ -6,4 +6,4 @@ module.exports = {
   ignore: ['**/*.spec.js', '**/spec.js'],
   skipComponentsWithoutExample: true,
   webpackConfig
-};
+}

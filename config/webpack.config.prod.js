@@ -1,9 +1,9 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
 
-const paths = require('./paths');
+const paths = require('./paths')
 
 module.exports = {
   devtool: 'source-map',
@@ -62,4 +62,4 @@ module.exports = {
       AppCache: { events: true }
     })
   ]
-};
+}

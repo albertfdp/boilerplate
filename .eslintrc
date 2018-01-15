@@ -1,7 +1,9 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "pretty-standard"
+    "prettier",
+    "prettier/react",
+    "prettier/standard"
   ],
   "globals": {
     "__DEV__": false,
