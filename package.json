@@ -7,16 +7,17 @@
   "author": "Albert Fernández <albert@nandez.cat>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
-    "styleguide": "styleguidist --config config/styleguide.config.js server",
     "build": "NODE_ENV=production webpack --progress",
+    "format:js": "prettier --write {config,src,test}/**/*.js",
     "format": "yarn run format:js",
-    "lint": "yarn run lint:js && yarn run lint:css",
     "lint:css": "stylelint src/**/*.css",
     "lint:js": "eslint {config,src,test}/**/*.js",
-    "format:js": "prettier --single-quote --write {config,src,test}/**/*.js",
-    "test": "jest",
+    "lint": "yarn run lint:js && yarn run lint:css",
+    "precommit": "lint-staged",
+    "start": "webpack-dev-server",
+    "styleguide": "styleguidist --config config/styleguide.config.js server",
     "test:watch": "jest --watch",
+    "test": "jest",
     "travis": "yarn run format && yarn run lint && yarn run test"
   },
   "devDependencies": {
@@ -66,8 +67,10 @@
       "^.+\\.js$": "babel-jest"
     },
     "testRegex": "\\.*(spec\\.js)$",
-    "setupFiles": [
-      "raf/polyfill"
-    ]
+    "setupFiles": ["raf/polyfill"]
+  },
+  "lint-staged": {
+    "*.js": ["prettier", "eslint", "git add"],
+    "*.css": ["prettier", "stylelint", "git add"]
   }
 }
