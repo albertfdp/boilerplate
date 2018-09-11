@@ -1,7 +1,7 @@
 import React from 'react'
 import expect from 'test/expect'
 
-import App from '.'
+import App from './'
 
 describe('App', () => {
   it('renders', () => {
@@ -12,9 +12,8 @@ describe('App', () => {
     expect(
       <App />,
       'to render as',
-      <div className='container'>
+      <div className="container">
         <h1>An opinionated boilerplate</h1>
-        <p>...and offline ready!</p>
       </div>
     )
   })
