@@ -1,1 +1,0 @@
-export offlinePlugin from './offlinePlugin'

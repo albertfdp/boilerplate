@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const paths = require('./paths')
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  mode: 'development',
 
   entry: [paths.app],
 
@@ -55,7 +55,6 @@ module.exports = {
       title: 'An opinionated boilerplate',
       template: paths.template
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ]
 }

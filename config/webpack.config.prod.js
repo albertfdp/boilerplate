@@ -1,18 +1,26 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const SriPlugin = require('webpack-subresource-integrity')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const paths = require('./paths')
 
 module.exports = {
+  mode: 'production',
+
   devtool: 'source-map',
+
   entry: { app: paths.app },
+
   output: {
+    crossOriginLoading: 'anonymous',
     filename: '[name].[chunkhash].js',
     path: paths.output,
     publicPath: paths.public
   },
+
   module: {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', include: paths.source },
@@ -23,43 +31,52 @@ module.exports = {
       },
       {
         test: /\.css/,
-        loaders: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use:
-            'css-loader?modules&localIdentName=[hash:base64:5]!postcss-loader'
-        }),
+        loaders: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[hash:base64:5]'
+            }
+          },
+          'postcss-loader'
+        ],
         include: paths.source
       },
       { test: /\.(woff|png|jpg|gif)$/, use: 'url-loader?limit=5000' }
     ]
   },
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin()
+    ]
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: false,
-      __PRODUCTION__: true,
-      'process.env.NODE_ENV': JSON.stringify('production')
+      __PRODUCTION__: true
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin({
-      filename: '[name].[chunkhash].css',
-      allChunks: true
+
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: { screw_ie8: true, warnings: false },
-      mangle: { screw_ie8: true }
+
+    new SriPlugin({
+      hashFuncNames: ['sha384']
     }),
+
     new HtmlWebpackPlugin({
       title: 'An opinionated boilerplate',
       template: paths.template
-    }),
-    new OfflinePlugin({
-      safeToUseOptionalCaches: true,
-      caches: {
-        main: ['app.*.js', 'app.*.css', 'index.html'],
-        optional: [':rest:']
-      },
-      ServiceWorker: { events: true },
-      AppCache: { events: true }
     })
   ]
 }
