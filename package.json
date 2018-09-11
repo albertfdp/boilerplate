@@ -15,6 +15,7 @@
     "lint": "yarn run lint:js && yarn run lint:css",
     "precommit": "lint-staged",
     "start": "webpack-serve",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "test:watch": "jest --watch",
     "test": "jest",
     "travis": "yarn run format && yarn run lint && yarn run test"
