@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "chrome": 61
@@ -9,7 +9,7 @@
         "modules": false
       }
     ],
-    "react"
+    "@babel/preset-react"
   ],
   "plugins": [
     [
@@ -21,27 +21,28 @@
         }
       }
     ],
-    "transform-class-properties",
-    "transform-export-extensions"
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-export-namespace-from"
   ],
   "env": {
     "production": {
       "presets": [
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "browsers": "last 2 versions"
             },
             "modules": false,
-            "useBuiltIns": true
+            "useBuiltIns": "entry"
           }
         ],
-        "react"
+        "@babel/preset-react"
       ]
     },
     "test": {
-      "presets": ["env", "react"],
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
       "plugins": [
         [
           "module-resolver",
@@ -52,8 +53,9 @@
             }
           }
         ],
-        "transform-class-properties",
-        "transform-export-extensions"
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-proposal-export-namespace-from"
       ]
     }
   }
